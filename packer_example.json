@@ -19,13 +19,13 @@
     "inline": [
       "sleep 30",
       "sudo yum update -y",
-      "sudo yum install -y epel-release",
-      "sudo yum install -y python36",
-      "sudo yum install -y python34-setuptools",
+      "sudo yum install -y epel-release python36 python34-setuptools unzip wget",
       "sudo easy_install-3.4 pip",
+      "sudo yum install -y python-pip",
       "sudo yum install -y python34-pip",
-      "sudo pip3 --version",
-      "sudo pip3 install awscli --upgrade --user",
+      "sudo pip install --upgrade pip",
+      "sudo pip --version",
+      "sudo pip install awscli",
       "cd ~",
       "mkdir packer_new",
       "cd packer_new/",
@@ -33,17 +33,7 @@
       "sudo unzip packer_1.5.1_linux_amd64.zip",
       "sudo ln -s ~/packer_new/packer /usr/bin/packer.io",
       "echo 'export PATH=$HOME/packer_new:$HOME/.local/bin::$HOME/bin:$PATH' >> ~/.bashrc",
-      "sudo source ~/.bash_profile",
-      "sudo aws",
-      "sudo yum -y install yum-utils",
-      "sudo yum-config-manager --enable rhui-us-west-1-rhel-server-extras rhui-us-west-1-rhel-server-optional",
-      "sudo yum install -y certbot python2-certbot-nginx",
-      "sudo yum install -y --setopt=obsoletes=0 python2-certbot-dns-route53",
-      "aws configure",
-      "sudo echo '0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew' | sudo tee -a /etc/crontab > /dev/null",
-      "sudo certbot certonly --dns-route53 -d *.maxdevops.net --email bradfordlperkins@maximus.com --no-eff-email --agree-tos",
-      "certbot certificates",
-      "mkdir /home/acedirect"
+      "source ~/.bashrc"
     ]
   }]
 }

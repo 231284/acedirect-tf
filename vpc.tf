@@ -135,3 +135,9 @@ resource "aws_eip" "fcc-proxy-eip" {
   vpc      = true
 }
 */
+
+/*
+
+NAT Gateway
+
+*/

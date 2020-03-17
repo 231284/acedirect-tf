@@ -122,17 +122,17 @@ resource "aws_route_table_association" "fcc_acedirect_prod_private_1" {
 
 #Elastic IPs
 resource "aws_eip" "fcc-proxy-eip" {
-  instance = "${aws_instance.web.id}"
+  instance = "${aws_instance.fcc-acedirect-prod-proxy-01.id}"
   vpc      = true
 }
 
 resource "aws_eip" "fcc-dvpn-eip" {
-  instance = "${aws_instance.web.id}"
+  instance = "${aws_instance.fcc-acedirect-prod-dvpn-01.id}"
   vpc      = true
 }
 
 resource "aws_eip" "fcc-sswan-eip" {
-  instance = "${aws_instance.web.id}"
+  instance = "${aws_instance.fcc-acedirect-prod-sswan-01.id}"
   vpc      = true
 }
 

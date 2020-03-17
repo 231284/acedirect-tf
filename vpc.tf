@@ -104,6 +104,14 @@ resource "aws_route_table" "fcc-acedirect-prod-public-rt" {
   }
 }
 
+resource "aws_route_table" "fcc-acedirect-prod-private-rt" {
+  vpc_id = aws_vpc.fcc_acedirect_prod_vpc.id
+
+  tags = {
+    Name = "fcc-acedirect-prod-private-rt"
+  }
+}
+
 # route associations public
 resource "aws_route_table_association" "fcc_acedirect_prod_dmz_1" {
   subnet_id      = aws_subnet.fcc_acedirect_prod_dmz_1.id

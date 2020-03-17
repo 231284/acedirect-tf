@@ -173,7 +173,7 @@ resource "aws_security_group_rule" "ingress_provider_1" {
 
   type        = "ingress"
   protocol    = "-1"
-  cidr_blocks = "${element(var.ingress_provider_cidr, count.index)}"
+  cidr_blocks = ["${element(var.ingress_provider_cidr, count.index)}"]
   from_port   = 0
   to_port     = 0
 

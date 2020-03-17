@@ -1,5 +1,5 @@
 variable "AWS_REGION" {
-  default = "us-west-2"
+  default = "us-east-1"
 }
 variable "PATH_TO_PRIVATE_KEY" {
   default = "mykey"
@@ -46,9 +46,9 @@ variable "DB_PORT" {
 variable "AMIS" {
   type = map(string)
   default = {
-    us-west-1 = "ami-074e2d6769f445be5"
-    us-west-2 = "ami-01ed306a12b7d1c96"
-    #us-east-1 = ""
+    #us-west-1 = "ami-074e2d6769f445be5"
+    #us-west-2 = "ami-01ed306a12b7d1c96"
+    us-east-1 = ""
   }
 }
 

@@ -77,6 +77,38 @@ resource "aws_security_group" "fcc-acedirect-prod-swan-sg" {
   }
 }
 
+resource "aws_security_group" "fcc-acedirect-prod-rdp-sg" {
+  name = "fcc-acedirect-prod-rdp-sg"
+  description = "Allow RDP to Windows server"
+  vpc_id = aws_vpc.fcc_acedirect_prod_vpc.id
+  tags = {
+    Name = "fcc-acedirect-prod-rdp-sg"
+  }
+
+  #Ingress
+  ingress {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["10.116.92.0/22"]
+  }
+
+  ingress {
+      from_port   = 3389
+      to_port     = 3389
+      protocol    = "tcp"
+      cidr_blocks = ["71.178.44.250/32"]
+  }
+
+  #Egress
+  egress {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 resource "aws_security_group" "fcc-acedirect-prod-providers-sg" {
   name = "fcc-acedirect-prod-providers-sg"
   description = "Allow traffic from specific phone providers in"

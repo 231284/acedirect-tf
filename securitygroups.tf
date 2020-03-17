@@ -118,16 +118,6 @@ resource "aws_security_group" "fcc-acedirect-prod-providers-sg" {
   }
 
   #Ingress
-  dynamic "ingress" {
-    for_each = ["71.178.44.250/32", "174.137.37.0/24", "74.119.0.0/16", "208.94.16.0/24", "208.95.32.0/24", "73.14.137.136/32", "13.56.121.236/32", "54.176.251.137/32", "13.52.11.155/32", "13.52.109.48/32", "52.8.246.26/32", "13.57.81.12/32", "52.53.117.180/32", "156.154.0.0/16", "162.253.0.0/24", "209.169.0.0/16", "24.73.117.0/24", "35.169.254.158/32", "54.237.194.197/32", "66.220.26.222/32", "70.33.169.8/32", "71.119.0.0/16", "8.34.145.6/32", "8.39.223.0/24", "75.71.247.71/32", "10.1.3.0/24", "64.106.221.178/32", "76.25.49.108/32", "76.120.87.61/32"]
-    content {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_blocks = [ingress.value]
-    }
-  }
-
   ingress {
       from_port   = 0
       to_port     = 0
@@ -177,6 +167,19 @@ resource "aws_security_group" "fcc-acedirect-prod-rds-sg" {
     Name = "fcc-acedirect-prod-rds-sg"
   }
 }
+
+resource "aws_security_group_rule" "ingress_provider_1" {
+  count = "${length(var.ingress_provider_cidr)}"
+
+  type        = "ingress"
+  protocol    = "-1"
+  cidr_blocks = "${element(var.ingress_provider_cidr, count.index)}"
+  from_port   = 0
+  to_port     = 0
+
+  security_group_id = "${aws_security_group.fcc-acedirect-prod-web-sg.id}"
+}
+
 
 resource "aws_security_group_rule" "ingress_web_1" {
   count = "${length(var.ingress_web_ports_1)}"

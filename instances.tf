@@ -13,7 +13,7 @@ resource "aws_instance" "fcc-acedirect-prod-openam-01" {
   vpc_security_group_ids = [aws_security_group.fcc-acedirect-prod-web-sg.id]
 
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = "ace_direct_key"
 }
 
 resource "aws_instance" "fcc-acedirect-prod-stun-01" {
@@ -31,7 +31,7 @@ resource "aws_instance" "fcc-acedirect-prod-stun-01" {
   vpc_security_group_ids = [aws_security_group.fcc-acedirect-prod-web-sg.id]
 
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = "ace_direct_key"
 }
 
 resource "aws_instance" "fcc-acedirect-prod-node-01" {
@@ -49,7 +49,7 @@ resource "aws_instance" "fcc-acedirect-prod-node-01" {
   vpc_security_group_ids = [aws_security_group.fcc-acedirect-prod-web-sg.id]
 
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = "ace_direct_key"
 }
 
 resource "aws_instance" "fcc-acedirect-prod-virtagent-01" {
@@ -67,7 +67,7 @@ resource "aws_instance" "fcc-acedirect-prod-virtagent-01" {
   vpc_security_group_ids = [aws_security_group.fcc-acedirect-prod-rdp-sg.id]
 
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = "ace_direct_key"
 }
 
 resource "aws_instance" "fcc-acedirect-prod-dvpn-01" {
@@ -85,7 +85,7 @@ resource "aws_instance" "fcc-acedirect-prod-dvpn-01" {
   vpc_security_group_ids = [aws_security_group.fcc-acedirect-prod-web-sg.id]
 
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = "ace_direct_key"
 }
 
 resource "aws_instance" "fcc-acedirect-prod-sswan-01" {
@@ -103,7 +103,7 @@ resource "aws_instance" "fcc-acedirect-prod-sswan-01" {
   vpc_security_group_ids = [aws_security_group.fcc-acedirect-prod-web-sg.id]
 
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = "ace_direct_key"
 }
 
 resource "aws_instance" "fcc-acedirect-prod-proxy-01" {
@@ -121,7 +121,7 @@ resource "aws_instance" "fcc-acedirect-prod-proxy-01" {
   vpc_security_group_ids = [aws_security_group.fcc-acedirect-prod-web-sg.id]
 
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = "ace_direct_key"
 }
 
 resource "aws_instance" "fcc-acedirect-prod-asterisk-01" {
@@ -139,5 +139,5 @@ resource "aws_instance" "fcc-acedirect-prod-asterisk-01" {
   vpc_security_group_ids = [aws_security_group.fcc-acedirect-prod-web-sg.id]
 
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = "ace_direct_key"
 }

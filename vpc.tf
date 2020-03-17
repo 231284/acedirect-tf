@@ -47,7 +47,7 @@ resource "aws_subnet" "fcc_acedirect_prod_public_1" {
 resource "aws_subnet" "fcc_acedirect_prod_private_1" {
   vpc_id                  = aws_vpc.fcc_acedirect_prod_vpc.id
   cidr_block              = "10.116.93.128/25"
-  map_public_ip_on_launch = "false"
+  map_public_ip_on_launch = "true"
   availability_zone       = "us-east-1a"
 
   tags = {
@@ -58,7 +58,7 @@ resource "aws_subnet" "fcc_acedirect_prod_private_1" {
 resource "aws_subnet" "fcc_acedirect_prod_dmz_1" {
   vpc_id                  = aws_vpc.fcc_acedirect_prod_vpc.id
   cidr_block              = "10.116.94.0/25"
-  map_public_ip_on_launch = "false"
+  map_public_ip_on_launch = "true"
   availability_zone       = "us-east-1a"
 
   tags = {
@@ -105,13 +105,8 @@ resource "aws_route_table" "fcc-acedirect-prod-public-rt" {
 }
 
 # route associations public
-resource "aws_route_table_association" "fcc_acedirect_prod_db_west_2a" {
-  subnet_id      = aws_subnet.fcc_acedirect_prod_db_east_1a.id
-  route_table_id = aws_route_table.fcc-acedirect-prod-public-rt.id
-}
-
-resource "aws_route_table_association" "fcc_acedirect_prod_db_west_2b" {
-  subnet_id      = aws_subnet.fcc_acedirect_prod_db_east_1b.id
+resource "aws_route_table_association" "fcc_acedirect_prod_dmz_1" {
+  subnet_id      = aws_subnet.fcc_acedirect_prod_dmz_1.id
   route_table_id = aws_route_table.fcc-acedirect-prod-public-rt.id
 }
 
@@ -120,14 +115,13 @@ resource "aws_route_table_association" "fcc_acedirect_prod_public_1" {
   route_table_id = aws_route_table.fcc-acedirect-prod-public-rt.id
 }
 
-/*#Elastic IPs
-resource "aws_eip" "fcc-openam-eip" {
-  instance = "${aws_instance.example.id}"
-  vpc      = true
+resource "aws_route_table_association" "fcc_acedirect_prod_private_1" {
+  subnet_id      = aws_subnet.fcc_acedirect_prod_private_1.id
+  route_table_id = aws_route_table.fcc-acedirect-prod-public-rt.id
 }
 
-
-resource "aws_eip" "fcc-node-eip" {
+#Elastic IPs
+resource "aws_eip" "fcc-proxy-eip" {
   instance = "${aws_instance.web.id}"
   vpc      = true
 }
@@ -142,6 +136,16 @@ resource "aws_eip" "fcc-sswan-eip" {
   vpc      = true
 }
 
+/*resource "aws_eip" "fcc-openam-eip" {
+  instance = "${aws_instance.example.id}"
+  vpc      = true
+}
+
+resource "aws_eip" "fcc-node-eip" {
+  instance = "${aws_instance.web.id}"
+  vpc      = true
+}
+
 resource "aws_eip" "fcc-asterisk-eip" {
   instance = "${aws_instance.web.id}"
   vpc      = true
@@ -152,10 +156,6 @@ resource "aws_eip" "fcc-stun-eip" {
   vpc      = true
 }
 
-resource "aws_eip" "fcc-proxy-eip" {
-  instance = "${aws_instance.web.id}"
-  vpc      = true
-}
 */
 
 /*

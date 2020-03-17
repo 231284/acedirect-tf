@@ -106,12 +106,12 @@ resource "aws_route_table" "fcc-acedirect-prod-public-rt" {
 
 # route associations public
 resource "aws_route_table_association" "fcc_acedirect_prod_db_west_2a" {
-  subnet_id      = aws_subnet.fcc_acedirect_prod_db_west_2a.id
+  subnet_id      = aws_subnet.fcc_acedirect_prod_db_east_1a.id
   route_table_id = aws_route_table.fcc-acedirect-prod-public-rt.id
 }
 
 resource "aws_route_table_association" "fcc_acedirect_prod_db_west_2b" {
-  subnet_id      = aws_subnet.fcc_acedirect_prod_db_west_2b.id
+  subnet_id      = aws_subnet.fcc_acedirect_prod_db_east_1b.id
   route_table_id = aws_route_table.fcc-acedirect-prod-public-rt.id
 }
 

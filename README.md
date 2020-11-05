@@ -4,6 +4,14 @@
 * Install and configure Environment
   * Install AWS cli and configure
   * Install Terraform
+  ```
+  sudo yum update
+  aws configure
+  sudo yum install wget unzip
+  sudo wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
+  sudo unzip terraform_0.13.5_linux_amd64.zip -d /usr/local/bin
+  terraform -v
+  ```
   * Install Packer
   ```
   cd ~
